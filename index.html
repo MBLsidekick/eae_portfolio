@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brandon — Game Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f6f2;
+      --surface: #ffffff;
+      --ink: #0f0f0f;
+      --ink-muted: #6b6b6b;
+      --accent: #1a1a1a;
+      --line: #e2e0d8;
+      --tag-bg: #efefeb;
+      --tag-ink: #444;
+      --unity: #0f0f0f;
+      --mono: 'DM Mono', monospace;
+      --sans: 'Syne', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(247,246,242,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-logo {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex; gap: 36px; list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 48px 72px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-label {
+      position: absolute;
+      top: 50%; right: 48px;
+      transform: translateY(-50%);
+      font-family: var(--sans);
+      font-size: clamp(120px, 20vw, 240px);
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--line);
+      letter-spacing: -0.04em;
+      user-select: none;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s ease forwards;
+    }
+    .hero-name {
+      font-size: clamp(52px, 8vw, 100px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s ease forwards;
+    }
+    .hero-name span { color: var(--ink-muted); }
+    .hero-desc {
+      max-width: 480px;
+      font-family: var(--mono);
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--ink-muted);
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s ease forwards;
+    }
+    .hero-ctas {
+      display: flex; gap: 16px; margin-top: 40px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.45s ease forwards;
+    }
+    .btn {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      padding: 13px 28px;
+      border-radius: 2px;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-dark {
+      background: var(--ink);
+      color: #fff;
+    }
+    .btn-dark:hover { background: #333; }
+    .btn-outline {
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      background: transparent;
+    }
+    .btn-outline:hover { background: var(--ink); color: #fff; }
+
+    /* ── SECTION LAYOUT ── */
+    section {
+      padding: 100px 48px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-header {
+      display: flex; align-items: baseline; gap: 20px;
+      margin-bottom: 64px;
+    }
+    .section-number {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.1em;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    /* ── PROJECTS GRID ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2px;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 36px;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.07);
+      z-index: 1;
+    }
+    .project-status {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .status-released { background: #e8f5e9; color: #2e7d32; }
+    .status-wip      { background: #fff8e1; color: #f57f17; }
+    .status-concept  { background: #e8eaf6; color: #3949ab; }
+
+    .project-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .project-desc {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--ink-muted);
+      margin-bottom: 24px;
+    }
+    .project-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 28px;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      background: var(--tag-bg);
+      color: var(--tag-ink);
+      padding: 4px 10px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+    .project-link {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .project-link:hover { opacity: 0.5; }
+    .project-thumb {
+      width: 100%;
+      height: 180px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+      background: var(--tag-bg);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .project-thumb-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── GDD TABLE ── */
+    .gdd-list {
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--line);
+    }
+    .gdd-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 140px;
+      align-items: center;
+      padding: 22px 32px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+      transition: background 0.15s;
+      gap: 16px;
+    }
+    .gdd-row:last-child { border-bottom: none; }
+    .gdd-row:hover { background: var(--tag-bg); }
+    .gdd-row.header {
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .gdd-row.header:hover { background: var(--ink); }
+    .gdd-doc-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+    }
+    .gdd-game {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+    .gdd-date {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+    .gdd-dl {
+      font-family: var(--mono);
+      font-size: 0.73rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      border: 1px solid var(--line);
+      padding: 7px 14px;
+      border-radius: 2px;
+      text-align: center;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+    .gdd-dl:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-name {
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+    }
+    .footer-links {
+      display: flex; gap: 28px;
+    }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { gap: 20px; }
+      .hero, section { padding-left: 24px; padding-right: 24px; }
+      .hero { padding-bottom: 48px; }
+      .hero-bg-label { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .gdd-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .gdd-row .gdd-date { display: none; }
+      footer { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Brandon.</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#gdds">GDDs</a></li>
+      <li><a href="mailto:brandon@email.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg-label">UNITY</div>
+    <p class="hero-eyebrow">Game Developer &amp; Designer</p>
+    <h1 class="hero-name">Brandon<br/><span>makes games.</span></h1>
+    <p class="hero-desc">
+      I build small, handcrafted games in Unity — focused on tight mechanics,
+      thoughtful design, and experiences worth playing.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-dark">View Projects</a>
+      <a href="#gdds" class="btn btn-outline">Read GDDs</a>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Game Projects</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <div class="project-thumb-inner">[ screenshot / cover art ]</div>
+        </div>
+        <span class="project-status status-released">Released</span>
+        <h3 class="project-title">Project Alpha</h3>
+        <p class="project-desc">
+          A minimalist puzzle platformer built around a single core mechanic —
+          gravity inversion. Short, sharp levels designed for replayability.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Unity</span>
+          <span class="tag">Puzzle</span>
+          <span class="tag">Platformer</span>
+          <span class="tag">C#</span>
+        </div>
+        <a href="#" class="project-link">Play on itch.io →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <div class="project-thumb-inner">[ screenshot / cover art ]</div>
+        </div>
+        <span class="project-status status-released">Released</span>
+        <h3 class="project-title">Hollow Signal</h3>
+        <p class="project-desc">
+          A short narrative horror game made for a 72-hour game jam. Explore
+          a derelict radio station and piece together what happened.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Unity</span>
+          <span class="tag">Horror</span>
+          <span class="tag">Narrative</span>
+          <span class="tag">Game Jam</span>
+        </div>
+        <a href="#" class="project-link">Play on itch.io →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <div class="project-thumb-inner">[ screenshot / cover art ]</div>
+        </div>
+        <span class="project-status status-wip">In Progress</span>
+        <h3 class="project-title">Drift Protocol</h3>
+        <p class="project-desc">
+          A top-down arcade shooter with procedurally generated enemy patterns.
+          Currently in early prototype — focus on feel and juice.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Unity</span>
+          <span class="tag">Shooter</span>
+          <span class="tag">Arcade</span>
+          <span class="tag">Procedural</span>
+        </div>
+        <a href="#" class="project-link">View devlog →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GDDs -->
+  <section id="gdds">
+    <div class="section-header reveal">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Design Documents</h2>
+    </div>
+    <p class="project-desc reveal" style="max-width:560px; margin-bottom: 40px; margin-top: -32px;">
+      Game Design Documents outlining mechanics, systems, and design intent
+      for each project. Written before and during development.
+    </p>
+
+    <div class="gdd-list reveal">
+      <div class="gdd-row header">
+        <span>Document</span>
+        <span>Project</span>
+        <span>Last Updated</span>
+        <span></span>
+      </div>
+
+      <div class="gdd-row">
+        <div>
+          <div class="gdd-doc-title">Core Mechanics GDD</div>
+          <div class="gdd-game" style="margin-top:4px; font-size:0.73rem;">Gravity inversion, level structure, win/fail states</div>
+        </div>
+        <span class="gdd-game">Project Alpha</span>
+        <span class="gdd-date">Jan 2025</span>
+        <a href="#" class="gdd-dl">View PDF</a>
+      </div>
+
+      <div class="gdd-row">
+        <div>
+          <div class="gdd-doc-title">Narrative &amp; Atmosphere Doc</div>
+          <div class="gdd-game" style="margin-top:4px; font-size:0.73rem;">Story structure, environmental storytelling, audio direction</div>
+        </div>
+        <span class="gdd-game">Hollow Signal</span>
+        <span class="gdd-date">Mar 2025</span>
+        <a href="#" class="gdd-dl">View PDF</a>
+      </div>
+
+      <div class="gdd-row">
+        <div>
+          <div class="gdd-doc-title">Prototype Scope Doc</div>
+          <div class="gdd-game" style="margin-top:4px; font-size:0.73rem;">MVP feature list, enemy AI spec, juice checklist</div>
+        </div>
+        <span class="gdd-game">Drift Protocol</span>
+        <span class="gdd-date">Feb 2026</span>
+        <a href="#" class="gdd-dl">View PDF</a>
+      </div>
+
+      <div class="gdd-row">
+        <div>
+          <div class="gdd-doc-title">Systems Design Overview</div>
+          <div class="gdd-game" style="margin-top:4px; font-size:0.73rem;">Progression, difficulty scaling, economy loops</div>
+        </div>
+        <span class="gdd-game">Drift Protocol</span>
+        <span class="gdd-date">Mar 2026</span>
+        <a href="#" class="gdd-dl">View PDF</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Brandon.</span>
+    <div class="footer-links">
+      <a href="https://itch.io" target="_blank">itch.io</a>
+      <a href="https://github.com" target="_blank">GitHub</a>
+      <a href="https://twitter.com" target="_blank">Twitter</a>
+      <a href="mailto:brandon@email.com">Email</a>
+    </div>
+    <span class="footer-copy">© 2026</span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
