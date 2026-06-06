@@ -1,0 +1,200 @@
+/**
+ * Responsive overrides — mobile-first additions
+ * Loaded after style.css. Adjust breakpoints to match your content.
+ */
+
+@media (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-text {
+    order: 1;
+  }
+
+  .hero-photo-wrap {
+    order: 0;
+    justify-self: center;
+    max-width: 280px;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+
+  .hero-tagline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-duck {
+    width: clamp(80px, 18vw, 120px);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+    z-index: 1001;
+  }
+
+  .main-nav {
+    flex: 0 0 0 !important;
+    width: 0;
+    min-width: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(320px, 88vw);
+    height: 100vh;
+    padding: 5.5rem 1.5rem 2rem;
+    background: var(--bg-surface);
+    border-left: 1px solid var(--border-subtle);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform var(--transition-smooth);
+    overflow-y: auto;
+  }
+
+  .main-nav.is-open {
+    transform: translateX(0);
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .main-nav a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
+    z-index: 999;
+  }
+
+  .nav-backdrop.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters,
+  .gdd-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gdd-search {
+    max-width: none;
+  }
+
+  .project-links {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .hero-cta .btn {
+    width: auto;
+    flex: 1 1 auto;
+    min-width: min(100%, 200px);
+  }
+}
+
+/* ─── Project Sections responsive ───────────────────────────── */
+
+@media (max-width: 1024px) {
+  .project-zone-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .project-zone-2 .code-snippets {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-zone-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .project-zone-1 .project-video-wrap {
+    order: -1;
+  }
+
+  .project-zone-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .project-zone-2 .code-snippets {
+    grid-column: span 1;
+  }
+
+  .project-section {
+    padding: 2.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid img:first-child:last-child {
+    grid-column: span 1;
+  }
+}
+
+/* Print: simplify for CV / portfolio printouts */
+@media print {
+  .site-header,
+  .site-footer,
+  .site-loader,
+  .nav-toggle,
+  .theme-toggle,
+  .hero-cta,
+  .contact-form,
+  .prefs-panel,
+  .social-links {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .section {
+    padding: 1rem 0;
+  }
+}

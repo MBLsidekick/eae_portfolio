@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Unity projects by Marc Brandon Lee — demos, repos, and breakdowns." />
+    <title>Projects | Marc Brandon Lee</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("portfolioTheme");
+          if (!t) t = "dark";
+          document.documentElement.classList.remove("light", "dark");
+          document.documentElement.classList.add(t);
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <div id="site-loader" class="site-loader" role="status" aria-live="polite">
+      <div class="loader-inner">
+        <div class="loader-logo">LOADING</div>
+        <div class="loader-bar" aria-hidden="true"><div class="loader-bar-fill"></div></div>
+      </div>
+    </div>
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <div class="page-content">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="logo" href="index.html">MARC <span>BRANDON</span> LEE</a>
+          <div class="header-actions">
+            <nav id="primary-nav" class="main-nav" aria-label="Primary">
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html" aria-current="page">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+              </ul>
+            </nav>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light theme" title="Toggle light / dark theme">
+              <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" fill-rule="evenodd" d="M16.5 6A10.5 10.5 0 0 1 4.7 16.4 8.5 8.5 0 1 0 16.4 4.7zm-1.7-2a9 9 0 0 1 .2 2 9 9 0 0 1-11 8.8 9 9 0 0 1-.8-.3c-.4 0-.8.3-.7.7a10 10 0 0 0 .3.8 10 10 0 0 0 9.2 6 10 10 0 0 0 4-19.2 10 10 0 0 0-.9-.3c-.3-.1-.7.3-.6.7a9 9 0 0 1 .3.8" />
+              </svg>
+              <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" fill-rule="evenodd" d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11m0 1.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14m12-7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1 0-1.6h2.4a.8.8 0 0 1 .8.8M4 12a.8.8 0 0 1-.8.8H.8a.8.8 0 0 1 0-1.6h2.5a.8.8 0 0 1 .8.8zm16.5-8.5a.8.8 0 0 1 0 1l-1.8 1.8a.8.8 0 0 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM6.3 17.7a.8.8 0 0 1 0 1l-1.7 1.8a.8.8 0 1 1-1-1l1.7-1.8a.8.8 0 0 1 1 0M12 0a.8.8 0 0 1 .8.8v2.5a.8.8 0 0 1-1.6 0V.8A.8.8 0 0 1 12 0m0 20a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-1.6 0v-2.4a.8.8 0 0 1 .8-.8M3.5 3.5a.8.8 0 0 1 1 0l1.8 1.8a.8.8 0 1 1-1 1L3.5 4.6a.8.8 0 0 1 0-1zm14.2 14.2a.8.8 0 0 1 1 0l1.8 1.7a.8.8 0 0 1-1 1l-1.8-1.7a.8.8 0 0 1 0-1" />
+              </svg>
+            </button>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+          <div class="nav-backdrop" aria-hidden="true"></div>
+        </div>
+      </header>
+
+      <main id="main-content">
+<section class="section">
+          <div class="container">
+            <div class="projects-list">
+
+              <!-- ── PROJECT 1: Drift in Dread ───────────────────────── -->
+              <section
+                class="project-section reveal"
+                id="project-drift-in-dread"
+                data-engine="unity"
+                data-genre="action"
+                data-type="prototype"
+                aria-labelledby="proj1-title"
+              >
+                <div class="project-zone-1">
+                  <div class="project-zone-1-info">
+                    <div class="project-meta">
+                      <span class="tag">*SCAPE</span>
+                      <span class="tag">Sci-fi Survival</span>
+                      <span class="tag">Unity</span>
+                      <span class="tag">Blender</span>
+                      <span class="tag">C#</span>
+                      <span class="tag">Git</span>
+                    </div>
+                    <h2 id="proj1-title">Drift in Dread</h2>
+                    <div class="project-tagline-row">
+                      <a class="project-tagline" href="https://docs.google.com/document/d/17aAWyNgqKw5s7BxBCaJME0z6S__SuQJcaZ3MaQAeVqQ" target="_blank" rel="noopener noreferrer">
+                        <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.1em;margin-right:0.35em"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Game Design Document
+                      </a>
+                      <button type="button" class="gdd-slides-btn" aria-label="View GDD slides" title="View slides">
+                        <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                      </button>
+                    </div>
+                    <!-- Hidden GDD slide images — opened by the slides button via lightbox -->
+                    <div class="gdd-slides-strip" hidden>
+                      <img class="gallery-img" src="images/projects/drift-gdd-slide-1.png" alt="GDD Slide 1 — Title" data-description="Page 1" />
+                      <img class="gallery-img" src="images/projects/drift-gdd-slide-2.png" alt="GDD Slide 2 — Story Timeline" data-description="Page 2" />
+                      <img class="gallery-img" src="images/projects/drift-gdd-slide-3.png" alt="GDD Slide 3 — Core Navigation" data-description="Page 3" />
+                      <img class="gallery-img" src="images/projects/drift-gdd-slide-4.png" alt="GDD Slide 4 — Resource Generation" data-description="Page 4" />
+                      <img class="gallery-img" src="images/projects/drift-gdd-slide-5.png" alt="GDD Slide 5 — Threat Matrix" data-description="Page 5" />
+                      <img class="gallery-img" src="images/projects/drift-gdd-slide-6.png" alt="GDD Slide 6 — Spacewalk" data-description="Page 6" />
+                      <img class="gallery-img" src="images/projects/drift-gdd-slide-7.png" alt="GDD Slide 7 — Overgrowth" data-description="Page 7" />
+                      <img class="gallery-img" src="images/projects/drift-gdd-slide-8.png" alt="GDD Slide 8 — Brute Arena" data-description="Page 8" />
+                      <img class="gallery-img" src="images/projects/drift-gdd-slide-9.png" alt="GDD Slide 9 — Brute AI" data-description="Page 9" />
+                    </div>
+                    <p>
+                      A third-person action game set aboard a space station gone wrong. You play a
+                      genetic experiment subject with the ability to generate light, the weakest
+                      power among the mutants. Navigate hostile machinery and mutants to reach an
+                      escape pod.
+                    </p>
+                  </div>
+                  <div class="project-video-wrap">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/HUAcViJ0gN0?si=OO_hc-f7C6N0ki_U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  </div>
+                </div>
+                <div class="project-zone-2">
+
+                  <!-- Gallery -->
+                  <div class="project-gallery">
+                    <h3 class="zone-label">Screenshots & Code</h3>
+                    <div class="screenshot-strip">
+                      <img class="gallery-img" src="images/projects/drift-screenshot-1.png" alt="Drift in Dread — screenshot 1" data-description="Drone Behaviour: Drone detects player through raycasting to implement line of sight checks and using waypoints for navigation." loading="lazy" />
+                      <img class="gallery-img" src="images/projects/drift-screenshot-2.jpg" alt="Drift in Dread — screenshot 2" data-description="Room Generation: Spawns rooms in succession from a list of prefabs. Chooses a different list of prefabs with bigger rooms every 7-10 generations. Has a node system so certain rooms with complex shapes can allow Drone to follow a path of the waypoints." loading="lazy" />
+                      <img class="gallery-img" src="images/projects/drift-screenshot-3.jpg" alt="Drift in Dread — screenshot 3" data-description="Interactable Objects: (Left) Before refactoring I used one script to contain all the interactable object behaviour code. (Right) After refactoring I used an abstract interface so each interactable is its own script and follows single responsibility principle." loading="lazy" />
+                    </div>
+                  </div>
+
+
+                </div>
+              </section>
+
+              <hr class="project-divider" aria-hidden="true" />
+
+              <!-- ── PROJECT 2: Diablo-like Project ──────────────────── -->
+<!--
+              <section
+                class="project-section reveal"
+                id="project-diablo-like"
+                data-engine="unity"
+                data-genre="rpg"
+                data-type="prototype"
+                aria-labelledby="proj2-title"
+              >
+                <div class="project-zone-1">
+                  <div class="project-zone-1-info">
+                    <div class="project-meta">
+                      <span class="tag">Unity</span>
+                      <span class="tag">RPG</span>
+                      <span class="tag">Prototype</span>
+                    </div>
+                    <h2 id="proj2-title">Diablo-like Project</h2>
+                    <p class="project-tagline">Top-down action RPG in development.</p>
+                    <p>
+                      A top-down action RPG prototype inspired by the Diablo series. Built in Unity,
+                      focused on combat feel, loot systems, and dungeon traversal. Details TBD as
+                      the project develops.
+                    </p>
+                    <p class="timeline-inline">Timeline: TBD</p>
+                    <div class="project-links">
+                      <a href="https://github.com/" rel="noopener noreferrer" target="_blank">Source</a>
+                      <a href="documents/gdd-echo-ruins.html" rel="noopener noreferrer" target="_blank">Game Design Doc</a>
+                    </div>
+                  </div>
+                  <div class="project-video-wrap">
+                    <div class="project-video-placeholder" aria-label="Gameplay video placeholder">
+                      <span class="project-video-play" aria-hidden="true">▶</span>
+                      <span class="project-video-label">Gameplay Video</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-zone-2">
+
+                  <div class="project-gallery">
+                    <h3 class="zone-label">Screenshots</h3>
+                    <div class="screenshot-strip">
+                      <img class="gallery-img" src="images/projects/echo-ruins.svg" alt="Diablo-like Project — placeholder screenshot 1" loading="lazy" />
+                      <img class="gallery-img" src="images/projects/echo-ruins.svg" alt="Diablo-like Project — placeholder screenshot 2" loading="lazy" />
+                    </div>
+                  </div>
+
+
+                </div>
+              </section>
+
+              <hr class="project-divider" aria-hidden="true" />
+-->
+
+              <!-- ── PROJECT 3: Mobile Game ───────────────────────────── -->
+<!--
+              <section
+                class="project-section reveal"
+                id="project-mobile-game"
+                data-engine="unity"
+                data-genre="mobile"
+                data-type="prototype"
+                aria-labelledby="proj3-title"
+              >
+                <div class="project-zone-1">
+                  <div class="project-zone-1-info">
+                    <div class="project-meta">
+                      <span class="tag">Unity</span>
+                      <span class="tag">Mobile</span>
+                      <span class="tag">Prototype</span>
+                    </div>
+                    <h2 id="proj3-title">Mobile Game</h2>
+                    <p class="project-tagline">Coming soon.</p>
+                    <p>
+                      A mobile game in early development. Gameplay details are not finalised yet.
+                      Check back for updates.
+                    </p>
+                    <p class="timeline-inline">Timeline: TBD</p>
+                    <div class="project-links">
+                      <a href="https://github.com/" rel="noopener noreferrer" target="_blank">Source</a>
+                    </div>
+                  </div>
+                  <div class="project-video-wrap">
+                    <div class="project-video-placeholder" aria-label="Gameplay video placeholder">
+                      <span class="project-video-play" aria-hidden="true">▶</span>
+                      <span class="project-video-label">Gameplay Video</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-zone-2">
+
+                  <div class="project-gallery">
+                    <h3 class="zone-label">Screenshots</h3>
+                    <div class="screenshot-strip">
+                      <img class="gallery-img" src="images/projects/garden-gnome.svg" alt="Mobile Game — placeholder screenshot 1" loading="lazy" />
+                      <img class="gallery-img" src="images/projects/garden-gnome.svg" alt="Mobile Game — placeholder screenshot 2" loading="lazy" />
+                    </div>
+                  </div>
+
+
+                </div>
+              </section>
+-->
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/projects.js" defer></script>
+  </body>
+</html>
